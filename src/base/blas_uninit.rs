@@ -312,6 +312,28 @@ pub unsafe fn gemm_uninit<
                             csc as isize,
                         );
                         return;
+                    } else if TypeId::of::<T>() == TypeId::of::<i32>() {
+                        let (rsa, csa) = a.strides();
+                        let (rsb, csb) = b.strides();
+                        let (rsc, csc) = y.strides();
+
+                        matrixmultiply::igemm(
+                            nrows2,
+                            ncols2,
+                            ncols3,
+                            mem::transmute_copy(&alpha),
+                            a.data.ptr() as *const i32,
+                            rsa as isize,
+                            csa as isize,
+                            b.data.ptr() as *const i32,
+                            rsb as isize,
+                            csb as isize,
+                            mem::transmute_copy(&beta),
+                            y.data.ptr_mut() as *mut i32,
+                            rsc as isize,
+                            csc as isize,
+                        );
+                        return;
                     }
                 }
             }

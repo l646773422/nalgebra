@@ -128,7 +128,7 @@ approx = { version = "0.5", default-features = false }
 simba = { version = "0.9", default-features = false }
 alga = { version = "0.9", default-features = false, optional = true }
 rand_distr = { version = "0.5", default-features = false, optional = true }
-matrixmultiply = { git = "https://github.com/l646773422/matrixmultiply.git", optional = true }
+matrixmultiply = { git = "https://github.com/l646773422/matrixmultiply.git", optional = true, features = ["threading", "std"] }
 serde = { version = "1.0", default-features = false, features = ["derive"], optional = true }
 # TODO: once rkyv is updated to 0.8, we could consider removing the `allow(unsafe_op_in_unsafe_fn)`.
 rkyv = { version = "0.7.41", default-features = false, optional = true }
@@ -160,7 +160,7 @@ defmt = { version = "1.0.1", optional = true }
 encase = { version = "0.12", optional = true }
 
 # [patch."https://github.com/l646773422/matrixmultiply.git"]
-# matrixmultiply = { path = "../matrixmultiply" }
+# matrixmultiply = { path = "../matrixmultiply", features = ["threading", "std"] }
 
 [dev-dependencies]
 serde_json = "1.0"
